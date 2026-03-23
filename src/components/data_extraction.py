@@ -33,7 +33,7 @@ class DataExtraction:
                 else:
                     existing_sheets = []
                 
-                with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a' if os.path.exists(excel_file_path) else 'w') as writer:
+                with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a' if os.path.exists(excel_file_path) else 'w', if_sheet_exists='replace') as writer:
                     for channel in channels:
                         sql_query = scrappers_query(start_date_str, end_date_str, channel)
                         success, df, message = execute_query_to_dataframe(sql_query)
